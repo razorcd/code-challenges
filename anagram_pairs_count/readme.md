@@ -40,3 +40,8 @@ iwwhrlkpek
 2
 6
 3
+
+
+##Source
+
+https://www.hackerrank.com/challenges/sherlock-and-anagrams

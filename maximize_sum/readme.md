@@ -23,3 +23,7 @@ array: 3 3 9 9 5
 ####Sample Output
 
 6
+
+##Source
+
+https://www.hackerrank.com/challenges/maximize-sum
