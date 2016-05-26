@@ -9,11 +9,9 @@ def square_roots(l, k)
     return arr.inject(&:+)
 end
 
-
 def sqrt val
   Math.sqrt(val).to_i
 end
-
 
 def index_of_max arr
   max_val= 0

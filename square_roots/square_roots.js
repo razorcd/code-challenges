@@ -1,29 +1,36 @@
-def squareRoots(l, k)
-    arr= (1..l).to_a.reverse
+function squareRoots(l, k) {
+  var arr=generate_array(l);
 
-    k.times do
-      index= index_of_max arr
-      arr[index]= sqrt(arr[index])
-    end  
-    
-    return arr.inject(&:+)    
-end
+  for(var i=1; i<=k; i++) {
+    var index= index_of_max(arr);
+    arr[index]= parseInt(Math.sqrt(arr[index]));
+  }
 
+  return sum(arr);
+}
 
-def sqrt val
-  Math.sqrt(val).to_i
-end
+function index_of_max(arr) {
+  var max_val= 0;
+  var max_index= 0;
+    for(var i=0;i<arr.length;i++) {
+      if (max_val < arr[i]) {
+        max_val= arr[i];
+        max_index= i;
+      }
+    }
+  return max_index;
+}
 
+function sum(arr) {
+  var sum=0;
+  for(i=0;i<arr.length;i++) {
+    sum+= arr[i];
+  }
+  return sum;
+}
 
-def index_of_max arr
-  max_val= 0
-  max_index= 0
-  arr.each_with_index do |val, index| 
-      if max_val< val
-        max_index= index
-        max_val= val
-      end
-  end
-  return max_index
-end
-
+function generate_array(limit){
+  var arr=[];
+  for(var i=1; i<=limit; i++){ arr[i-1]=i; }
+  return arr;
+}
