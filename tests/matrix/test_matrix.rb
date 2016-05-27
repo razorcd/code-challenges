@@ -117,11 +117,11 @@ class MatrixTest < Test::Unit::TestCase
 
   end
 
-  # def test_routes_between_cities_with_machines
-  #   matrix2= create_matrix2
-  #   cities_with_machines= matrix2.cities_with_machines
-  #   routes_between_cities_with_machines= matrix2.routes_between_cities_with_machines
+  def test_all_routes_between_cities_with_machines
+    matrix2= create_matrix2
+    cities_with_machines= matrix2.cities_with_machines
+    all_routes_between_cities_with_machines= matrix2.all_routes_between_cities_with_machines
 
-  #   assert_equal(routes_between_cities_with_machines.length, 4)
-  # end
+    assert_equal(all_routes_between_cities_with_machines.length, 6)
+  end
 end

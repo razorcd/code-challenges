@@ -40,17 +40,24 @@ class Matrix
     @cities_with_machines||= @cities.select {|c| c[:machine]==true}
   end
 
+  def all_routes_between_cities_with_machines
+    cities_with_machines_pairs= cities_with_machines.permutation(2)
+    cities_with_machines_uniq_pairs= cities_with_machines_pairs.
+        map {|cp| cp.sort {|c1,c2| c1[:id] <=> c2[:id] } }.
+        uniq
 
-
+    all_routes= cities_with_machines_uniq_pairs.map {|city_pair| routes_between_cities(city_pair[0], city_pair[1])}
+    all_routes.flatten!(1)
+  end
 
   def routes_between_cities city1, city2
     routes= []
     path= [{
-        from: city1[:id],
-        to: city1[:id],
-        time: 0,
-        enabled: true,
-      }]
+      from: city1[:id],
+      to: city1[:id],
+      time: 0,
+      enabled: true,
+    }]
     _next_road from: city1, looking_for: city2, path: path, routes: routes
     routes
   end
@@ -71,12 +78,12 @@ private
       if (link[:linked_city][:id]==looking_for[:id])
         routes<< path.dup
 
-        puts "---------"
-        puts routes.count
-        routes.each do |route|
-          puts route.map {|l| [l[:from], l[:to]]}.to_s
-        end
-        puts "---------"
+        # puts "---------"
+        # puts routes.count
+        # routes.each do |route|
+        #   puts route.map {|l| [l[:from], l[:to]]}.to_s
+        # end
+        # puts "---------"
       else
         _next_road from: link[:linked_city], looking_for: looking_for, path: path, routes: routes
       end
