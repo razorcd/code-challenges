@@ -63,17 +63,20 @@ class MatrixTest < Test::Unit::TestCase
     # [
     #   [
     #     {
-    #       linked_city: city0,
+    #       from: 0,
+    #       to: 0,
     #       time: 0,
     #       enabled: true,
     #     },
     #     {
-    #       linked_city: city1,
+    #       from: 0,
+    #       to: 1,
     #       time: 5,
     #       enabled: true,
     #     },
     #     {
-    #       linked_city: city2,
+    #       from: 1,
+    #       to: 2,
     #       time: 8,
     #       enabled: true,
     #     },
@@ -81,17 +84,20 @@ class MatrixTest < Test::Unit::TestCase
     #
     #   [
     #     {
-    #       linked_city: city0,
+    #       from: 0,
+    #       to: 0,
     #       time: 0,
     #       enabled: true,
     #     },
     #     {
-    #       linked_city: city4,
+    #       from: 0,
+    #       to: 4,
     #       time: 5,
     #       enabled: true,
     #     },
     #     {
-    #       linked_city: city2,
+    #       from: 4,
+    #       to: 2,
     #       time: 8,
     #       enabled: true,
     #     },
@@ -103,10 +109,10 @@ class MatrixTest < Test::Unit::TestCase
     assert_equal(routes02[0].length, 3)
     assert_equal(routes02[1].length, 3)
 
-    assert_equal(routes02[0].map {|link| link[:linked_city][:id]}, [0,1,2])
+    assert_equal(routes02[0].map {|link| [link[:from], link[:to]]}, [[0,0],[0,1],[1,2]])
     assert_equal(routes02[0].map {|road| road[:time]}.sort, [0,5,8])
 
-    assert_equal(routes02[1].map {|link| link[:linked_city][:id]}, [0,4,2])
+    assert_equal(routes02[1].map {|link| [link[:from], link[:to]]}, [[0,0],[0,4],[4,2]])
     assert_equal(routes02[1].map {|road| road[:time]}.sort, [0,3,5])
 
   end

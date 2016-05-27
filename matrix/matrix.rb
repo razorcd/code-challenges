@@ -46,7 +46,8 @@ class Matrix
   def routes_between_cities city1, city2
     routes= []
     path= [{
-        linked_city: city1,
+        from: city1[:id],
+        to: city1[:id],
         time: 0,
         enabled: true,
       }]
@@ -57,19 +58,25 @@ class Matrix
 private
 
   def _next_road from:, looking_for:, path: [], routes: []
-    from[:links].each do |link|
-      next if path.map {|pl| pl[:linked_city][:id]}.include?(link[:linked_city][:id]) # skips `from` city if it is already in `path`
-      path.push(link)
+    from[:links].each do |link|   #TODO: skip enabled= false here
+      next if path.map {|road| [road[:from], road[:to]]}.flatten.include?(link[:linked_city][:id]) # skips `from` city if it is already in `path`
+
+      path.push({
+        from: path.last[:to],
+        to: link[:linked_city][:id],
+        time: link[:time],
+        enabled: link[:enabled],
+      })
 
       if (link[:linked_city][:id]==looking_for[:id])
         routes<< path.dup
 
-        # puts "---------"
-        # puts routes.count
-        # routes.each do |route|
-        #   puts route.map {|l| l[:linked_city][:id]}.to_s
-        # end
-        # puts "---------"
+        puts "---------"
+        puts routes.count
+        routes.each do |route|
+          puts route.map {|l| [l[:from], l[:to]]}.to_s
+        end
+        puts "---------"
       else
         _next_road from: link[:linked_city], looking_for: looking_for, path: path, routes: routes
       end
