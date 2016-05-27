@@ -1,3 +1,5 @@
+#Square roots
+
 Given a list of integers, define a move as taking one of the integers in the list and replacing it with its square root, rounded down to the nearest integer.
 
 Given an integer l and an integer k, start with the array [1, 2, 3, ..., l] and find the minimal sum of the array after k moves.
