@@ -153,9 +153,22 @@ class MatrixTest < Test::Unit::TestCase
     assert_equal(city4_link_to_city0[:enabled], true)
   end
 
-  # def test_shortest_time_to_save_zeon
-  #   matrix2= create_matrix2
+  def test_city_by_id
+    matrix2= create_matrix2
 
-  #   assert_equal(matrix2.shortest_time_to_save_zeon, 13)
-  # end
+    assert_equal(matrix2.city_by_id(0)[:id], 0)
+  end
+
+  def test_shortest_time_to_save_zeon1
+    matrix1= create_matrix1
+
+    assert_equal(matrix1.shortest_time_to_save_zeon, 10)
+  end
+
+  def test_shortest_time_to_save_zeon2
+    matrix2= create_matrix2
+
+    assert_equal(matrix2.shortest_time_to_save_zeon, 13)
+  end
+
 end

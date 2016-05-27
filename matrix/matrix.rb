@@ -58,16 +58,37 @@ class Matrix
     # puts all_routes[5].map {|r| [r[:from], r[:to]]}.to_s
   end
 
-  # def shortest_time_to_save_zeon
-  #   all_routes= all_routes_between_cities_with_machines
-  #   all_possible_roads= all_routes.flatten
+  def shortest_time_to_save_zeon
+    all_routes= all_routes_between_cities_with_machines
+    all_possible_roads= all_routes.flatten.uniq
 
-  #   best_time= 9999999999999
-  #   all_possible_roads.permutation.each do |roads|
-  #     roads.map {|road| road[:]}
-  #   end
+    best_time= Float::INFINITY
+    combinations(all_possible_roads) do |route|
+      current_time= route.map {|r| r[:time]}.inject(&:+)
+      next if current_time >= best_time
 
-  # end
+      route.map do |road|
+        next if road[:time]==0
+        from_city= city_by_id(road[:from])
+        to_city= city_by_id(road[:to])
+        disable_road_between(city1: from_city, city2: to_city)
+      end
+
+      if all_routes_between_cities_with_machines.length==0
+        best_time= current_time
+      end
+
+      route.map do |road|
+        next if road[:time]==0
+        from_city= city_by_id(road[:from])
+        to_city= city_by_id(road[:to])
+        enable_road_between(city1: from_city, city2: to_city)
+      end
+
+    end
+
+    best_time
+  end
 
   def routes_between_cities city1, city2
     routes= []
@@ -83,22 +104,32 @@ class Matrix
 
   def disable_road_between city1:, city2:
     city1_link_to_city2= link_between(city1, city2)
-    raise "city already disabled" if (city1_link_to_city2[:enabled]== false)
-    city1_link_to_city2[:enabled]= false
+    raise "no link to disable between #{city1[:id]} and #{city2[:id]}" if city1_link_to_city2.nil?
+    # raise "road between #{city1[:id]} and #{city2[:id]} already disabled" if (city1_link_to_city2[:enabled]== false)
 
     city2_link_to_city1= link_between(city2, city1)
-    raise "city already disabled" if (city2_link_to_city1[:enabled]== false)
+    raise "no link to disable between #{city2[:id]} and #{city1[:id]}" if city2_link_to_city1.nil?
+    # raise "road between #{city2[:id]} and #{city1[:id]} already disabled" if (city2_link_to_city1[:enabled]== false)
+
+    city1_link_to_city2[:enabled]= false
     city2_link_to_city1[:enabled]= false
   end
 
   def enable_road_between city1:, city2:
     city1_link_to_city2= link_between(city1, city2)
-    raise "city already enabled" if (city1_link_to_city2[:enabled]== true)
-    city1_link_to_city2[:enabled]= true
+    raise "no link to enable between #{city1[:id]} and #{city2[:id]}" if city1_link_to_city2.nil?
+    # raise "road between #{city1[:id]} and #{city2[:id]} already enabled" if (city1_link_to_city2[:enabled]== true)
 
     city2_link_to_city1= link_between(city2, city1)
-    raise "city already enabled" if (city2_link_to_city1[:enabled]== true)
+    raise "no link to enable between #{city2[:id]} and #{city1[:id]}" if city2_link_to_city1.nil?
+    # raise "road between #{city2[:id]} and #{city1[:id]} already enabled" if (city2_link_to_city1[:enabled]== true)
+
+    city1_link_to_city2[:enabled]= true
     city2_link_to_city1[:enabled]= true
+  end
+
+  def city_by_id id
+    cities.select {|c| c[:id]==id}[0]
   end
 
 private
@@ -108,7 +139,7 @@ private
   end
 
   def _next_road from:, looking_for:, path: [], routes: []
-    from[:links].each do |link|   #TODO: skip enabled= false here
+    from[:links].select {|l| l[:enabled]==true}.each do |link|
       next if path.map {|road| [road[:from], road[:to]]}.flatten.include?(link[:linked_city][:id]) # skips `from` city if it is already in `path`
 
       path.push({
@@ -132,6 +163,22 @@ private
       end
 
       path.pop()
+    end
+  end
+
+  def combinations arr, &block
+    permutations arr, [], &block
+  end
+
+  def permutations arr, perm, &block
+    for i in (0..arr.length-1)
+      ch= arr.slice!(i)
+      perm.push(ch)
+      yield perm
+      # if (arr.length==0) then yield @new_word end   # to return only permutations same size as arr
+      permutations arr, perm, &block
+      arr.insert(i, ch)
+      perm.pop
     end
   end
 
