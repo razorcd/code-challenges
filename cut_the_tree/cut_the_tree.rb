@@ -12,7 +12,7 @@ class CutTheTree
     end
 
     edges.each do |e|
-      initial_link nodes[e[0]-1], nodes[e[1]-1]
+      link nodes[e[0]-1], nodes[e[1]-1]
     end
 
     @root= nodes[0]
@@ -63,30 +63,30 @@ private
     end
   end
 
-  def initial_link node1, node2
-    raise "initial_link called with nil nodes" if node1.nil? || node2.nil?
-    node1[:links]<< node2
-    node2[:links]<< node1
-  end
-
   def link node1, node2
     raise "link called with nil nodes" if node1.nil? || node2.nil?
-    i1= node1[:links].index {|e| e==nil}
-    if i1
-      node1[:links][i1]= node2
-    end
 
+    #replaces link with the `nil` place to put the link back in same place so `node[:links].each` will not get misdirected
+    i1= node1[:links].index {|e| e==nil}
+    i1 ?
+      node1[:links][i1]= node2 :
+      node1[:links]<< node2
+
+    #replaces link with the `nil` place to put the link back in same place so `node[:links].each` will not get misdirected
     i2= node2[:links].index {|e| e==nil}
-    if i2
-      node2[:links][i2]= node1
-    end
+    i2 ?
+      node2[:links][i2]= node1 :
+      node2[:links]<< node1
   end
 
   def unlink node1, node2
     raise "unlink called with nil nodes" if node1.nil? || node2.nil?
+
+    #keeps `nil` in the place to put the link back in same place so `node[:links].each` will not get misdirected
     i1= node1[:links].index {|e| e==node2}
     node1[:links][i1]= nil
 
+    #keeps `nil` in the place to put the link back in same place so `node[:links].each` will not get misdirected
     i2= node2[:links].index {|e| e==node1}
     node2[:links][i2]= nil
   end
