@@ -45,10 +45,29 @@ class Matrix
     cities_with_machines_uniq_pairs= cities_with_machines_pairs.
         map {|cp| cp.sort {|c1,c2| c1[:id] <=> c2[:id] } }.
         uniq
+        # .map {|cp| [cp[0][:id], cp[1][:id]]}.to_s
 
     all_routes= cities_with_machines_uniq_pairs.map {|city_pair| routes_between_cities(city_pair[0], city_pair[1])}
     all_routes.flatten!(1)
+
+    # puts all_routes[0].map {|r| [r[:from], r[:to]]}.to_s
+    # puts all_routes[1].map {|r| [r[:from], r[:to]]}.to_s
+    # puts all_routes[2].map {|r| [r[:from], r[:to]]}.to_s
+    # puts all_routes[3].map {|r| [r[:from], r[:to]]}.to_s
+    # puts all_routes[4].map {|r| [r[:from], r[:to]]}.to_s
+    # puts all_routes[5].map {|r| [r[:from], r[:to]]}.to_s
   end
+
+  # def shortest_time_to_save_zeon
+  #   all_routes= all_routes_between_cities_with_machines
+  #   all_possible_roads= all_routes.flatten
+
+  #   best_time= 9999999999999
+  #   all_possible_roads.permutation.each do |roads|
+  #     roads.map {|road| road[:]}
+  #   end
+
+  # end
 
   def routes_between_cities city1, city2
     routes= []
@@ -62,7 +81,31 @@ class Matrix
     routes
   end
 
+  def disable_road_between city1:, city2:
+    city1_link_to_city2= link_between(city1, city2)
+    raise "city already disabled" if (city1_link_to_city2[:enabled]== false)
+    city1_link_to_city2[:enabled]= false
+
+    city2_link_to_city1= link_between(city2, city1)
+    raise "city already disabled" if (city2_link_to_city1[:enabled]== false)
+    city2_link_to_city1[:enabled]= false
+  end
+
+  def enable_road_between city1:, city2:
+    city1_link_to_city2= link_between(city1, city2)
+    raise "city already enabled" if (city1_link_to_city2[:enabled]== true)
+    city1_link_to_city2[:enabled]= true
+
+    city2_link_to_city1= link_between(city2, city1)
+    raise "city already enabled" if (city2_link_to_city1[:enabled]== true)
+    city2_link_to_city1[:enabled]= true
+  end
+
 private
+
+  def link_between city1, city2
+    city1[:links].select {|lc| lc[:linked_city][:id]==city2[:id]}[0]
+  end
 
   def _next_road from:, looking_for:, path: [], routes: []
     from[:links].each do |link|   #TODO: skip enabled= false here

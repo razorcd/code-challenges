@@ -124,4 +124,38 @@ class MatrixTest < Test::Unit::TestCase
 
     assert_equal(all_routes_between_cities_with_machines.length, 6)
   end
+
+  def test_disable_road_between
+    matrix2= create_matrix2
+    city0= matrix2.cities.select {|c| c[:id]==0}[0]
+    city4= matrix2.cities.select {|c| c[:id]==4}[0]
+    matrix2.disable_road_between city1: city0, city2: city4
+
+    city0_link_to_city4= city0[:links].select {|lc| lc[:linked_city][:id]==city4[:id]}[0]
+    assert_equal(city0_link_to_city4[:enabled], false)
+
+    city4_link_to_city0= city4[:links].select {|lc| lc[:linked_city][:id]==city0[:id]}[0]
+    assert_equal(city4_link_to_city0[:enabled], false)
+  end
+
+    def test_enable_road_between
+    matrix2= create_matrix2
+    city0= matrix2.cities.select {|c| c[:id]==0}[0]
+    city4= matrix2.cities.select {|c| c[:id]==4}[0]
+    matrix2.disable_road_between city1: city0, city2: city4
+
+    matrix2.enable_road_between city1: city0, city2: city4
+
+    city0_link_to_city4= city0[:links].select {|lc| lc[:linked_city][:id]==city4[:id]}[0]
+    assert_equal(city0_link_to_city4[:enabled], true)
+
+    city4_link_to_city0= city4[:links].select {|lc| lc[:linked_city][:id]==city0[:id]}[0]
+    assert_equal(city4_link_to_city0[:enabled], true)
+  end
+
+  # def test_shortest_time_to_save_zeon
+  #   matrix2= create_matrix2
+
+  #   assert_equal(matrix2.shortest_time_to_save_zeon, 13)
+  # end
 end
