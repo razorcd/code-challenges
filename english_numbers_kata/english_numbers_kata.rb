@@ -5,9 +5,9 @@ class EnglishNumbers
 
   def to_english
     english_nr= ""
+    number= @number
 
     loop do
-      number= @number
       tent= number% 100
       number= (number/100).to_i
       english_nr+= tents_to_english(tent)
@@ -20,10 +20,10 @@ private
 
   def tents_to_english nr
     t= [nil, nil, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
-    return "zero" if nr==0
-    return digit_to_english(nr) if (nr<10)
+    return digit_to_english(nr) if (nr>=0 && nr<10)
     return ten_19_to_english(nr) if (nr>=10 && nr<20)
-    t[nr/10]+ digit_to_english(nr%10, with_hyphen: true)
+    return t[nr/10] if (nr%10==0)
+    t[nr/10]+ "-"+ digit_to_english(nr%10)
   end
 
   def ten_19_to_english nr
@@ -31,9 +31,8 @@ private
     t[nr%10]
   end
 
-  def digit_to_english digit, with_hyphen: false
-    d= ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    digit_s= d[digit]
-    with_hyphen ? "-#{digit_s}" : digit_s
+  def digit_to_english digit
+    d= ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    d[digit]
   end
 end
