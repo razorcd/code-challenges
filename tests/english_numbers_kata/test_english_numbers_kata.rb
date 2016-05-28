@@ -55,4 +55,9 @@ class EnglishNumbersKataTest < Test::Unit::TestCase
     assert_equal(EnglishNumbers.new(4_700_541_101_035).to_english, "four trillions seven hundred billions five hundred forty-one million one hundred one thousand thirty-five")
     assert_equal(EnglishNumbers.new(42_000_000_000_000).to_english, "forty-two trillions")
   end
+
+  def test_negative_numbers
+    assert_equal(EnglishNumbers.new(-0).to_english, "zero")
+    assert_equal(EnglishNumbers.new(-4_700_541_101_035).to_english, "minus four trillions seven hundred billions five hundred forty-one million one hundred one thousand thirty-five")
+  end
 end

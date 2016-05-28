@@ -5,15 +5,17 @@ class EnglishNumbers
   TENTS= [nil, nil, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
   HUNDRED= "hundred"
   GROUPS= [nil, "thousand", "million", "billions", "trillions"]
+  MINUS= "minus"
 
   def initialize number
-    @number= number
+    @number= number.abs
+    @negative= (number<0 ? true : false)
   end
 
   def to_english
     return EnglishNumbers::ZERO if @number==0
     english_nr= []
-    number= @number.abs
+    number= @number
 
     groups_of_3_digits do |digits_group, index|
       next if digits_group==0
@@ -21,6 +23,7 @@ class EnglishNumbers
       english_nr.unshift *group_of_3_digits_to_english(digits_group)
     end
 
+    english_nr.unshift(EnglishNumbers::MINUS) if @negative
     english_nr.compact.join(" ")
   end
 
