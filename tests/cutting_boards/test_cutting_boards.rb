@@ -3,10 +3,10 @@ require_relative '../../cutting_boards/cutting_boards'
 
 class CuttingBoardsTest < Test::Unit::TestCase
   def board1
-    Board.new(m: 2, n: 2, mcosts: [2], ncosts: [1])
+    Board.new(mcosts: [2], ncosts: [1])
   end
   def board2
-    Board.new(m: 6, n: 4, mcosts: [2,1,3,1,4], ncosts: [4,1,2])
+    Board.new(mcosts: [2,1,3,1,4], ncosts: [4,1,2])
   end
 
   def test_initialize
