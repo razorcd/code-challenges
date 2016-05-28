@@ -15,9 +15,8 @@ class EnglishNumbers
   def to_english
     return EnglishNumbers::ZERO if @number==0
     english_nr= []
-    number= @number
 
-    groups_of_3_digits do |digits_group, index|
+    groups_of_3_digits_for(@number) do |digits_group, index|
       next if digits_group==0
       english_nr.unshift group_name(index)
       english_nr.unshift *group_of_3_digits_to_english(digits_group)
@@ -29,8 +28,7 @@ class EnglishNumbers
 
 private
 
-  def groups_of_3_digits
-    nr= @number
+  def groups_of_3_digits_for nr
     index=0
     loop do
       yield nr%1000, index
