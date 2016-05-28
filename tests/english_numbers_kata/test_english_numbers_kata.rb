@@ -32,11 +32,23 @@ class EnglishNumbersKataTest < Test::Unit::TestCase
     assert_equal(EnglishNumbers.new(872).to_english, "eight hundred seventy-two")
   end
 
-  def test_case_thousands_and_over
+  def test_case_thousands
     assert_equal(EnglishNumbers.new(1000).to_english, "one thousand")
     assert_equal(EnglishNumbers.new(1035).to_english, "one thousand thirty-five")
     assert_equal(EnglishNumbers.new(4321).to_english, "four thousand three hundred twenty-one")
     assert_equal(EnglishNumbers.new(8001).to_english, "eight thousand one")
     assert_equal(EnglishNumbers.new(9111).to_english, "nine thousand one hundred eleven")
+  end
+
+  def test_case_tents_and_hundreds_of_thousands
+    assert_equal(EnglishNumbers.new(13_000).to_english, "thirteen thousand")
+    assert_equal(EnglishNumbers.new(41_035).to_english, "forty-one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(361_315).to_english, "three hundred sixty-one thousand three hundred fifteen")
+  end
+
+  def test_case_tents_and_hundreds_of_millions_and_over
+    assert_equal(EnglishNumbers.new(1_000_000).to_english, "one million")
+    assert_equal(EnglishNumbers.new(13_511_321).to_english, "thirteen million five hundred eleven thousand three hundred twenty-one")
+    assert_equal(EnglishNumbers.new(541_101_035).to_english, "five hundred forty-one million one hundred one thousand thirty-five")
   end
 end
