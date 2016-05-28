@@ -6,20 +6,24 @@ class EnglishNumbers
   HUNDRED= "hundred"
   GROUPS= [nil, "thousand", "million", "billions", "trillions"]
   MINUS= "minus"
+  POINT= "point"
 
   def initialize number
-    @number= number.abs
+    @number= number.abs.to_i
+    @decimals= (number.integer? ? 0 : number.to_s.split(".").last.to_i)
     @negative= (number<0 ? true : false)
   end
 
   def to_english
-    return EnglishNumbers::ZERO if @number==0
     english_nr= []
 
-    groups_of_3_digits_for(@number) do |digits_group, index|
-      next if digits_group==0
-      english_nr.unshift group_name(index)
-      english_nr.unshift *group_of_3_digits_to_english(digits_group)
+    @number==0 ?
+      english_nr<< EnglishNumbers::ZERO :
+      english_nr+= number_to_english(@number)
+
+    if @decimals>0
+      english_nr<< EnglishNumbers::POINT
+      english_nr+= number_to_english(@decimals)
     end
 
     english_nr.unshift(EnglishNumbers::MINUS) if @negative
@@ -27,6 +31,16 @@ class EnglishNumbers
   end
 
 private
+
+  def number_to_english number
+    english_nr_ar= []
+    groups_of_3_digits_for(number) do |digits_group, index|
+      next if digits_group==0
+      english_nr_ar.unshift group_name(index)
+      english_nr_ar.unshift *group_of_3_digits_to_english(digits_group)
+    end
+    english_nr_ar
+  end
 
   def groups_of_3_digits_for nr
     index=0

@@ -60,4 +60,10 @@ class EnglishNumbersKataTest < Test::Unit::TestCase
     assert_equal(EnglishNumbers.new(-0).to_english, "zero")
     assert_equal(EnglishNumbers.new(-4_700_541_101_035).to_english, "minus four trillions seven hundred billions five hundred forty-one million one hundred one thousand thirty-five")
   end
+
+  def test_decimals
+    assert_equal(EnglishNumbers.new(-0.41_035).to_english, "minus zero point forty-one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(123.361_315).to_english, "one hundred twenty-three point three hundred sixty-one thousand three hundred fifteen")
+    assert_equal(EnglishNumbers.new(1.0).to_english, "one")
+  end
 end
