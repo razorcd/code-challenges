@@ -4,6 +4,7 @@ class EnglishNumbers
   end
 
   def to_english
+    return "zero" if @number==0
     english_nr= ""
     number= @number
 
@@ -12,11 +13,23 @@ class EnglishNumbers
       number= (number/100).to_i
       english_nr+= tents_to_english(tent)
       break if number==0
+
+      hundred= number%10
+      number= (number/10).to_i
+      english_nr= hundreds_to_english(hundred)+ " "+ english_nr
+
+      break if number==0
     end
-    english_nr
+    english_nr.strip
   end
 
 private
+
+
+  def hundreds_to_english digit
+    return "" if digit==0
+    digit_to_english(digit)+ " hundred"
+  end
 
   def tents_to_english nr
     t= [nil, nil, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
@@ -32,7 +45,7 @@ private
   end
 
   def digit_to_english digit
-    d= ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    d= ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
     d[digit]
   end
 end
