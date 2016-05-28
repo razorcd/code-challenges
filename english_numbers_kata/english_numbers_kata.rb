@@ -8,10 +8,10 @@ class EnglishNumbers
     english_nr= []
     number= @number.abs
 
-    groups_of_3_digits_for(@number).each_with_index do |hundreds, index|
-      next if hundreds==0
+    groups_of_3_digits do |digits_group, index|
+      next if digits_group==0
       english_nr.unshift group_name(index)
-      english_nr= group_of_3_digits_to_english(hundreds)+ english_nr
+      english_nr.unshift *group_of_3_digits_to_english(digits_group)
     end
 
     english_nr.compact.join(" ")
@@ -19,14 +19,15 @@ class EnglishNumbers
 
 private
 
-  def groups_of_3_digits_for nr
-    number_groups= []
-    number_s= nr.to_s.chars
+  def groups_of_3_digits
+    nr= @number
+    index=0
     loop do
-      number_groups<< number_s.pop(3).join.to_i
-      break if number_s.empty?
+      yield nr%1000, index
+      nr= (nr/1000).to_i
+      break if nr==0
+      index+=1
     end
-    number_groups
   end
 
   def group_name group= 0
