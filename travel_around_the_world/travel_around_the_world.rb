@@ -5,10 +5,10 @@ class Travel
     create_linked_list_for cities: cities, gallons: gallons
   end
 
-  def possible_starting_cities_count
+  def possible_starting_cities_count_if tank_capacity:
     count=0
     traverse do |current_link|
-      count+=1 if is_a_possible_starting_city?(current_link)
+      count+=1 if is_a_possible_starting_city?(current_link, tank_capacity)
     end
     count
   end
@@ -32,10 +32,11 @@ private
     last_link.next_link= @start_link
   end
 
-  def is_a_possible_starting_city? start
+  def is_a_possible_starting_city? start, tank_capacity
     gallons_in_car= 0
     traverse(start) do |current_link|
       gallons_in_car+= current_link.gallons_to_fill
+      gallons_in_car= tank_capacity if gallons_in_car>tank_capacity
       return(false) if current_link.next_link.gallons_needed_to_get_here> gallons_in_car
     end
     true
