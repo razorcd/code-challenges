@@ -50,5 +50,8 @@ class EnglishNumbersKataTest < Test::Unit::TestCase
     assert_equal(EnglishNumbers.new(1_000_000).to_english, "one million")
     assert_equal(EnglishNumbers.new(13_511_321).to_english, "thirteen million five hundred eleven thousand three hundred twenty-one")
     assert_equal(EnglishNumbers.new(541_101_035).to_english, "five hundred forty-one million one hundred one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(17_541_101_035).to_english, "seventeen billions five hundred forty-one million one hundred one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(700_541_101_035).to_english, "seven hundred billions five hundred forty-one million one hundred one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(4_700_541_101_035).to_english, "four trillions seven hundred billions five hundred forty-one million one hundred one thousand thirty-five")
   end
 end
