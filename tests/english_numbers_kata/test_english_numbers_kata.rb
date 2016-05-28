@@ -31,4 +31,12 @@ class EnglishNumbersKataTest < Test::Unit::TestCase
     assert_equal(EnglishNumbers.new(316).to_english, "three hundred sixteen")
     assert_equal(EnglishNumbers.new(872).to_english, "eight hundred seventy-two")
   end
+
+  def test_case_thousands_and_over
+    assert_equal(EnglishNumbers.new(1000).to_english, "one thousand")
+    assert_equal(EnglishNumbers.new(1035).to_english, "one thousand thirty-five")
+    assert_equal(EnglishNumbers.new(4321).to_english, "four thousand three hundred twenty-one")
+    assert_equal(EnglishNumbers.new(8001).to_english, "eight thousand one")
+    assert_equal(EnglishNumbers.new(9111).to_english, "nine thousand one hundred eleven")
+  end
 end

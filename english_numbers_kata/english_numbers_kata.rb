@@ -5,30 +5,35 @@ class EnglishNumbers
 
   def to_english
     return "zero" if @number==0
-    english_nr= ""
+    english_nr= []
     number= @number
 
     loop do
       tent= number% 100
       number= (number/100).to_i
-      english_nr+= tents_to_english(tent)
+      english_nr.unshift(tents_to_english(tent))
       break if number==0
 
-      hundred= number%10
+      over_hundred= number% 10
       number= (number/10).to_i
-      english_nr= hundreds_to_english(hundred)+ " "+ english_nr
+      english_nr.unshift(over_hundreds_to_english(over_hundred, 0))
+      break if number==0
 
+      over_hundred= number% 10
+      number= (number/10).to_i
+      english_nr.unshift(over_hundreds_to_english(over_hundred, 1))
       break if number==0
     end
-    english_nr.strip
+    puts english_nr.to_s
+    english_nr.reject(&:empty?).join(" ")  #.map(&:strip)
   end
 
 private
 
-
-  def hundreds_to_english digit
+  def over_hundreds_to_english digit, group= 0
+    oh= ["hundred", "thousand", "million", "billion"]
     return "" if digit==0
-    digit_to_english(digit)+ " hundred"
+    digit_to_english(digit)+ " "+ oh[group]
   end
 
   def tents_to_english nr
