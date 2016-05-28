@@ -1,10 +1,17 @@
 class EnglishNumbers
+  ZERO= "zero"
+  DIGITS= [nil, "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+  TEN_TO_NINETEEN= ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+  TENTS= [nil, nil, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+  HUNDRED= "hundred"
+  GROUPS= [nil, "thousand", "million", "billions", "trillions"]
+
   def initialize number
     @number= number
   end
 
   def to_english
-    return "zero" if @number==0
+    return EnglishNumbers::ZERO if @number==0
     english_nr= []
     number= @number.abs
 
@@ -31,12 +38,10 @@ private
   end
 
   def group_name group= 0
-    gr= [nil, "thousand", "million", "billions", "trillions"]
-    gr[group]
+    EnglishNumbers::GROUPS[group]
   end
 
   def group_of_3_digits_to_english nr
-    raise "#{nr} is over hundreds" if nr>999
     nr_en= []
 
     tents_en= tents_to_english(nr%100)
@@ -49,24 +54,21 @@ private
 
   def hundreds_to_english nr
     return nil if nr==0
-    digit_to_english(nr)+ " "+ "hundred"
+    digit_to_english(nr)+ " "+ EnglishNumbers::HUNDRED
   end
 
   def tents_to_english nr
-    t= [nil, nil, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
     return digit_to_english(nr) if (nr>=0 && nr<10)
     return ten_19_to_english(nr) if (nr>=10 && nr<20)
-    return t[nr/10] if (nr%10==0)
-    t[nr/10]+ "-"+ digit_to_english(nr%10)
+    return EnglishNumbers::TENTS[nr/10] if (nr%10==0)
+    EnglishNumbers::TENTS[nr/10]+ "-"+ digit_to_english(nr%10)
   end
 
   def ten_19_to_english nr
-    t= ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-    t[nr%10]
+    EnglishNumbers::TEN_TO_NINETEEN[nr%10]
   end
 
   def digit_to_english digit
-    d= [nil, "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    d[digit]
+    EnglishNumbers::DIGITS[digit]
   end
 end
