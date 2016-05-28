@@ -20,10 +20,12 @@ private
 
   def tents_to_english nr
     case
-    when (nr<10)
-      digit_to_english nr
+    when (nr==0)
+      "zero"
+    when (nr>0 && nr<10)
+      digit_to_english(nr)
     when (nr>=10 && nr<20)
-      # 10_19_to_english nr[1]
+      ten_19_to_english(nr)
     when (nr>=20 && nr<30)
       "twenty"+ digit_to_english(nr%10, with_hyphen: true)
     when (nr>=30 && nr<40)
@@ -74,6 +76,7 @@ private
   end
 
   def ten_19_to_english nr
-
+    t= ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+    t[nr%10]
   end
 end
