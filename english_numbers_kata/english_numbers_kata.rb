@@ -6,7 +6,7 @@ class EnglishNumbers
   def to_english
     return "zero" if @number==0
     english_nr= []
-    number= @number
+    number= @number.abs
 
     groups_of_3_digits_for(@number).each_with_index do |hundreds, index|
       next if hundreds==0
@@ -14,8 +14,7 @@ class EnglishNumbers
       english_nr= group_of_3_digits_to_english(hundreds)+ english_nr
     end
 
-    puts english_nr.to_s
-    english_nr.reject(&:empty?).join(" ")  #.map(&:strip)
+    english_nr.compact.join(" ")
   end
 
 private
@@ -31,7 +30,7 @@ private
   end
 
   def group_name group= 0
-    gr= ["", "thousand", "million", "billions", "trillions"]
+    gr= [nil, "thousand", "million", "billions", "trillions"]
     gr[group]
   end
 
@@ -48,8 +47,8 @@ private
   end
 
   def hundreds_to_english nr
-    return "" if nr==0
-    digit_to_english(nr)+ " hundred"
+    return nil if nr==0
+    digit_to_english(nr)+ " "+ "hundred"
   end
 
   def tents_to_english nr
@@ -66,7 +65,7 @@ private
   end
 
   def digit_to_english digit
-    d= ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    d= [nil, "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
     d[digit]
   end
 end
