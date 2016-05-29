@@ -4,6 +4,9 @@ require_relative '../../english_numbers_kata/english_numbers_kata'
 class EnglishNumbersKataTest < Test::Unit::TestCase
   def test_initialize
     assert_equal(defined?(EnglishNumbers.new(37545)).!.!, true)
+    assert_equal(defined?(EnglishNumbers.new(37545.21)).!.!, true)
+    assert_equal(defined?(EnglishNumbers.new("37545")).!.!, true)
+    assert_equal(defined?(EnglishNumbers.new("37545.21")).!.!, true)
   end
 
   def test_case_digits

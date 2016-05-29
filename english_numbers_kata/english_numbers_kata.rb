@@ -10,16 +10,14 @@ class EnglishNumbers
 
   def initialize number
     @number= number.abs.to_i
-    @decimals= (number.integer? ? 0 : number.to_s.split(".").last.to_i)
-    @negative= (number<0 ? true : false)
+    @decimals= decimals_from(number.to_f)
+    @negative= number.to_f<0
   end
 
   def to_english
     english_nr= []
 
-    @number==0 ?
-      english_nr<< EnglishNumbers::ZERO :
-      english_nr+= number_to_english(@number)
+    english_nr+= number_to_english(@number)
 
     if @decimals>0
       english_nr<< EnglishNumbers::POINT
@@ -33,6 +31,8 @@ class EnglishNumbers
 private
 
   def number_to_english number
+    return [EnglishNumbers::ZERO] if number==0
+
     english_nr_ar= []
     groups_of_3_digits_for(number) do |digits_group, index|
       next if digits_group==0
@@ -85,5 +85,13 @@ private
 
   def digit_to_english digit
     EnglishNumbers::DIGITS[digit]
+  end
+
+  def decimals_from number
+    if number.integer?
+      0
+    else
+      number.to_s.split(".").last.to_i
+    end
   end
 end
