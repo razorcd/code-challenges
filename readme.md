@@ -1,4 +1,4 @@
 #Code Challenges
 
 #### To run all tests
-ruby tests/**/*.rb
+`ruby tests/**/*.rb`
