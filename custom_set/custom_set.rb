@@ -1,8 +1,10 @@
+require_relative "fixed_size_array"
+
 class CustomSet
 
   def initialize
     @size = 0
-    @elements = Array.new(size)
+    @elements = FixedSizeArray.new(size)
   end
 
   def is_empty?
@@ -31,14 +33,14 @@ class CustomSet
     return unless index >= 0
 
     @elements[index] = @elements[size-1]
-    @elements[size] = nil
+    @elements[size-1] = nil
     @size -= 1
   end
 
 private
 
   def add_memory mem_size= 1
-    new_elements= Array.new(size + mem_size)
+    new_elements= FixedSizeArray.new(size + mem_size)
     for i in (0..size-1)
       new_elements[i] = @elements[i]
     end
@@ -53,3 +55,4 @@ private
   end
 
 end
+
