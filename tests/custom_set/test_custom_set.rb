@@ -49,4 +49,13 @@ class CustomSetTest < Test::Unit::TestCase
     assert_equal(c.contains("a"), false)
   end
 
+  def test_remove_non_existing_element
+    c = CustomSet.new()
+    c.add("a")
+    c.remove("a")
+    c.remove("b")
+
+    assert_equal(c.size, 0)
+    assert_equal(c.contains("a"), false)
+  end
 end
