@@ -40,4 +40,13 @@ class CustomSetTest < Test::Unit::TestCase
     assert_equal(c.contains("z"), false)
   end
 
+  def test_remove
+    c = CustomSet.new()
+    c.add("a")
+    c.remove("a")
+
+    assert_equal(c.size, 0)
+    assert_equal(c.contains("a"), false)
+  end
+
 end

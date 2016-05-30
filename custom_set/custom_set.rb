@@ -26,4 +26,12 @@ class CustomSet
     end
     return false
   end
+
+  def remove val
+    for i in (0..size)
+      @elements[i] = @elements[size]
+      @elements[size] = nil
+    end
+    @size -= 1
+  end
 end
