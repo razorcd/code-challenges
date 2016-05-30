@@ -1,10 +1,14 @@
 class CustomSet
 
   def initialize
-
+    @empty= true
   end
 
   def is_empty?
-    true
+    @empty
+  end
+
+  def add val
+    @empty= false
   end
 end
