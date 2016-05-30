@@ -1,8 +1,9 @@
 class CustomSet
 
   def initialize
-    @empty= true
-    @size= 0
+    @empty = true
+    @elements = []
+    @size = 0
   end
 
   def is_empty?
@@ -10,11 +11,19 @@ class CustomSet
   end
 
   def add val
-    @size+= 1
-    @empty= false
+    @elements[size]= val
+    @size += 1
+    @empty = false
   end
 
   def size
     @size
+  end
+
+  def contains val
+    for i in (0..size)
+      return true if @elements[i] == val
+    end
+    return false
   end
 end

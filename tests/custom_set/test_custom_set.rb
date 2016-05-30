@@ -7,13 +7,13 @@ class CustomSetTest < Test::Unit::TestCase
   end
 
   def one_custom_set
-    c= CustomSet.new()
+    c = CustomSet.new()
     c.add("a")
     c
   end
 
   def many_custom_set
-    c= CustomSet.new()
+    c = CustomSet.new()
     c.add("a")
     c.add("b")
     c
@@ -27,7 +27,17 @@ class CustomSetTest < Test::Unit::TestCase
   def test_size
     assert_equal(empty_custom_set.size, 0)
     assert_equal(one_custom_set.size, 1)
-    assert_equal(many_custom_set.size>1, true)
+    assert_equal(many_custom_set.size > 1, true)
+  end
+
+  def test_contains
+    c = CustomSet.new()
+
+    assert_equal(c.contains("a"), false)
+    assert_equal(c.contains("z"), false)
+    c.add("a")
+    assert_equal(c.contains("a"), true)
+    assert_equal(c.contains("z"), false)
   end
 
 end
