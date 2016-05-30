@@ -21,17 +21,25 @@ class CustomSet
   end
 
   def contains val
-    for i in (0..size)
-      return true if @elements[i] == val
-    end
-    return false
+    index_of(val) >= 0
   end
 
   def remove val
-    for i in (0..size)
-      @elements[i] = @elements[size]
-      @elements[size] = nil
-    end
+    index = index_of(val)
+    return unless index >= 0
+
+    @elements[index] = @elements[size]
+    @elements[size] = nil
     @size -= 1
   end
+
+private
+
+  def index_of val
+    for i in (0..size)
+      return i if @elements[i] == val
+    end
+    return -1
+  end
+
 end
