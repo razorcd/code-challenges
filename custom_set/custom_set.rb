@@ -10,8 +10,8 @@ class CustomSet
     @empty
   end
 
-  def add val
-    @elements[size]= val
+  def add element
+    @elements[size] = element
     @size += 1
     @empty = false
   end
@@ -20,12 +20,12 @@ class CustomSet
     @size
   end
 
-  def contains val
-    index_of(val) >= 0
+  def contains element
+    index_of(element) >= 0
   end
 
-  def remove val
-    index = index_of(val)
+  def remove element
+    index = index_of(element)
     return unless index >= 0
 
     @elements[index] = @elements[size]
@@ -35,9 +35,9 @@ class CustomSet
 
 private
 
-  def index_of val
+  def index_of element
     for i in (0..size)
-      return i if @elements[i] == val
+      return i if @elements[i] == element
     end
     return -1
   end

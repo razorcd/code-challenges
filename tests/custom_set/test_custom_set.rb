@@ -7,16 +7,16 @@ class CustomSetTest < Test::Unit::TestCase
   end
 
   def one_custom_set
-    c = CustomSet.new()
-    c.add("a")
-    c
+    cs = CustomSet.new
+    cs.add("a")
+    cs
   end
 
   def many_custom_set
-    c = CustomSet.new()
-    c.add("a")
-    c.add("b")
-    c
+    cs = CustomSet.new
+    cs.add("a")
+    cs.add("b")
+    cs
   end
 
   def test_empty_set
@@ -31,22 +31,22 @@ class CustomSetTest < Test::Unit::TestCase
   end
 
   def test_contains
-    c = CustomSet.new()
+    cs = CustomSet.new
 
-    assert_equal(c.contains("a"), false)
-    assert_equal(c.contains("z"), false)
-    c.add("a")
-    assert_equal(c.contains("a"), true)
-    assert_equal(c.contains("z"), false)
+    assert_equal(cs.contains("a"), false)
+    assert_equal(cs.contains("z"), false)
+    cs.add("a")
+    assert_equal(cs.contains("a"), true)
+    assert_equal(cs.contains("z"), false)
   end
 
   def test_remove
-    c = CustomSet.new()
-    c.add("a")
-    c.remove("a")
+    cs = CustomSet.new
+    cs.add("a")
+    cs.remove("a")
 
-    assert_equal(c.size, 0)
-    assert_equal(c.contains("a"), false)
+    assert_equal(cs.size, 0)
+    assert_equal(cs.contains("a"), false)
   end
 
   def test_remove_non_existing_element
