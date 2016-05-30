@@ -10,6 +10,8 @@ class CustomSet
   end
 
   def add element
+    return if contains(element)
+
     @elements[size] = element
     @size += 1
     @empty = false

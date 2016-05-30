@@ -40,6 +40,15 @@ class CustomSetTest < Test::Unit::TestCase
     assert_equal(cs.contains("z"), false)
   end
 
+  def test_add_ignores_duplicates
+    cs = CustomSet.new
+    cs.add("a")
+    cs.add("a")
+
+    assert_equal(cs.contains("a"), true)
+    assert_equal(cs.size, 1)
+  end
+
   def test_remove
     cs = CustomSet.new
     cs.add("a")
