@@ -1,13 +1,12 @@
 class CustomSet
 
   def initialize
-    @empty = true
     @elements = []
     @size = 0
   end
 
   def is_empty?
-    @empty
+    size == 0
   end
 
   def add element
