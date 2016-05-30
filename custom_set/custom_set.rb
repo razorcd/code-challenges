@@ -1,8 +1,8 @@
 class CustomSet
 
   def initialize
-    @elements = []
     @size = 0
+    @elements = Array.new(size)
   end
 
   def is_empty?
@@ -12,6 +12,7 @@ class CustomSet
   def add element
     return if contains(element)
 
+    add_memory_size 1
     @elements[size] = element
     @size += 1
     @empty = false
@@ -35,6 +36,14 @@ class CustomSet
   end
 
 private
+
+  def add_memory_size mem_size
+    new_elements= Array.new(size + mem_size)
+    for i in (0..size)
+      new_elements[i] = @elements[i]
+    end
+    @elements = new_elements
+  end
 
   def index_of element
     for i in (0..size)
