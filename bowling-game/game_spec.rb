@@ -1,4 +1,4 @@
-require "rails_helper"
+require_relative "game"
 
 RSpec.describe Game do
   let(:game) { Game.new }
@@ -8,7 +8,7 @@ RSpec.describe Game do
     end
 
     it "should have 10 total frames" do
-      expect(Game::TOTOAL_FRAMES_COUNT).to eq 10
+      expect(Game::TOTAL_FRAMES).to eq 10
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe Game do
 
   context "all frames" do
     before :each do
-      (Game::TOTOAL_FRAMES_COUNT-1).times do
+      (Game::TOTAL_FRAMES-1).times do
         game.throw! knocked_pins: 5
         game.throw! knocked_pins: 3
       end
@@ -146,7 +146,7 @@ RSpec.describe Game do
     end
 
     specify "with strike at last 2 frames" do
-      (Game::TOTOAL_FRAMES_COUNT-2).times do
+      (Game::TOTAL_FRAMES-2).times do
         game.throw! knocked_pins: 5
         game.throw! knocked_pins: 3
       end
@@ -166,7 +166,7 @@ RSpec.describe Game do
     end
 
     specify "with spare at last frame" do
-      (Game::TOTOAL_FRAMES_COUNT-1).times do
+      (Game::TOTAL_FRAMES-1).times do
         game.throw! knocked_pins: 5
         game.throw! knocked_pins: 3
       end

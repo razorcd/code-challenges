@@ -1,10 +1,11 @@
+require_relative "frame"
 
 class Game
-  TOTOAL_FRAMES_COUNT = 10
+  TOTAL_FRAMES = 10
   attr_reader :score
 
   def initialize
-    @frames = [Game::Frame.new]
+    @frames = [Frame.new]
     @score = 0
   end
 
@@ -34,15 +35,15 @@ private
   end
 
   def start_new_frame
-    @frames << (Game::Frame.new last: reached_before_last_frame?)
+    @frames << (Frame.new last: reached_before_last_frame?)
   end
 
   def reached_last_frame?
-    @frames.count == TOTOAL_FRAMES_COUNT
+    @frames.count == TOTAL_FRAMES
   end
 
   def reached_before_last_frame?
-    @frames.count == TOTOAL_FRAMES_COUNT-1
+    @frames.count == TOTAL_FRAMES-1
   end
 end
 
