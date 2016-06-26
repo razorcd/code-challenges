@@ -18,7 +18,7 @@ class Frame
     @score << knocked_pins
     @throws_count += 1
 
-    allow_one_more_throw if (strike? || spare?) && @last
+    allow_one_more_throw if (strike? || double_strike? || spare?) && @last
     update_expected_extra_throws_count if over? && @last.!
   end
 
@@ -41,6 +41,10 @@ private
 
   def strike?
     @throws_count == 1 && (@score[0] == TOTAL_PINS)
+  end
+
+  def double_strike?
+    @throws_count == 2 && (@score[0] == TOTAL_PINS) && (@score[1] == TOTAL_PINS)
   end
 
   def spare?

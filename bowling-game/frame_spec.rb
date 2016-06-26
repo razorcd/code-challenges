@@ -111,7 +111,7 @@ RSpec.describe Frame do
       expect(frame.score).to eq 0
     end
 
-    it "should allow max 2 normal throws" do
+    it "should allow 2 normal throws" do
       frame.throw! knocked_pins: 3
       frame.throw! knocked_pins: 2
       expect(frame.score).to eq 5
@@ -119,7 +119,7 @@ RSpec.describe Frame do
       expect { frame.throw! knocked_pins: 1 }.to raise_error(FrameError)
     end
 
-    it "should allow max 3 throws if first is a strike" do
+    it "should allow 3 throws if first is a strike" do
       frame.throw! knocked_pins: 10
       expect(frame.score).to eq 10
       expect(frame.over?).to eq false
@@ -134,7 +134,22 @@ RSpec.describe Frame do
       expect { frame.throw! knocked_pins: 1 }.to raise_error(FrameError)
     end
 
-    it "should allow max 3 throws if first 2 are a spare" do
+    it "should allow 3 throws if first 2 are a strike" do
+      frame.throw! knocked_pins: 10
+      expect(frame.score).to eq 10
+      expect(frame.over?).to eq false
+
+      frame.throw! knocked_pins: 10
+      expect(frame.score).to eq 20
+      expect(frame.over?).to eq false
+
+      frame.throw! knocked_pins: 6
+      expect(frame.score).to eq 26
+      expect(frame.over?).to eq true
+      expect { frame.throw! knocked_pins: 1 }.to raise_error(FrameError)
+    end
+
+    it "should allow 3 throws if first 2 are a spare" do
       frame.throw! knocked_pins: 2
       frame.throw! knocked_pins: 8
       expect(frame.score).to eq 10

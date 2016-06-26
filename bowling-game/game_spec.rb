@@ -91,6 +91,20 @@ RSpec.describe Game do
       expect(game.game_over?).to eq true
     end
 
+    it "should handle 2 strikes in last frame" do
+      game.throw! knocked_pins: 10
+      expect(game.score).to eq 82
+      expect(game.game_over?).to eq false
+
+      expect { game.throw! knocked_pins: 10 }.not_to raise_error
+      expect(game.score).to eq 92
+      expect(game.game_over?).to eq false
+
+      expect { game.throw! knocked_pins: 9 }.not_to raise_error
+      expect(game.score).to eq 101
+      expect(game.game_over?).to eq true
+    end
+
     it "should handle spare in last frame" do
       game.throw! knocked_pins: 4
       game.throw! knocked_pins: 6
