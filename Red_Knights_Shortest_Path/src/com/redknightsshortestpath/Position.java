@@ -11,6 +11,13 @@ public class Position {
     public Position() {
     }
 
+    /**
+     * Define a new position on the table
+     *
+     * @param name a value object containing: Key: the name of the movement as string (e.g. "UL"), Value: the order priority.
+     * @param i row coordinate
+     * @param j column coordinate
+     */
     public Position(AbstractMap.SimpleEntry<String, Integer> name, int i, int j) {
         this.name = name;
         this.i = i;
