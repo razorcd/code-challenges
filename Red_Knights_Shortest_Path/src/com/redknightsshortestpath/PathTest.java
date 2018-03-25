@@ -20,13 +20,27 @@ public class PathTest {
 
     @Test
     public void testGetShortestPathPerformance() {
-
         LocalDateTime start = LocalDateTime.now();
-        assertArrayEquals(new String[]{"LR", "LL"}, Path.getShortestPath(10, 0, 3, 4, 3));
+        String[] result = Path.getShortestPath(20, 0, 3, 18, 10);
+        LocalDateTime stop = LocalDateTime.now();
+
+        assertArrayEquals(new String[]{"LR", "LR", "LR", "LR", "LR", "LR", "LR", "LR", "LL"}, result);
+
+        Duration duration = Duration.between(start, stop);
+        System.out.println(duration.toMillis()+"ms");
+        assertTrue("Too slow!",duration.toMillis() < 100L);  // improved from 18000L
+    }
+
+    @Test
+    public void testGetShortestPathPerformance2() {
+        LocalDateTime start = LocalDateTime.now();
+        String[] result = Path.getShortestPath(25, 0, 3, 22, 22);
         LocalDateTime stop = LocalDateTime.now();
 
         Duration duration = Duration.between(start, stop);
-        System.out.println(duration);
-        assertTrue(duration.toMillis() < 5000L);
+        System.out.println(duration.toMillis()+"ms");
+
+        assertArrayEquals(new String[]{"R", "R", "R", "R", "LR", "LR", "LR", "LR", "LR", "LR", "LR", "LR", "LR", "LR", "LR"}, result);
+        assertTrue("Too slow! Duration: " + duration.toMillis(), duration.toMillis() < 100L);  // improved from 18000L
     }
 }

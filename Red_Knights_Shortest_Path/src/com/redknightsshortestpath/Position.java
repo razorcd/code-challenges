@@ -1,26 +1,27 @@
 package com.redknightsshortestpath;
 
+import java.util.AbstractMap;
 import java.util.Objects;
 
 public class Position {
-    String name;
+    AbstractMap.SimpleEntry<String, Integer> name;
     int i;
     int j;
 
     public Position() {
     }
 
-    public Position(String name, int i, int j) {
+    public Position(AbstractMap.SimpleEntry<String, Integer> name, int i, int j) {
         this.name = name;
         this.i = i;
         this.j = j;
     }
 
-    public String getName() {
+    public AbstractMap.SimpleEntry<String, Integer> getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(AbstractMap.SimpleEntry<String, Integer> name) {
         this.name = name;
     }
 
@@ -40,6 +41,7 @@ public class Position {
         this.j = j;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +58,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return '{' + name + ',' + i + ',' + j + '}';
+        return "{" + name + ',' + i + ',' + j + '}';
     }
 }
