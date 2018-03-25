@@ -3,7 +3,7 @@ package com.redknightsshortestpath;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Path {
+public class PathRecursive {
 
     /**
      * Prints the steps needed to move from start to finish, to stdout
