@@ -1,12 +1,35 @@
-#Code Challenges
+# Code Challenges
 
-Developed with ruby version [2.3.1](https://github.com/razorcd/code-challenges/blob/master/Gemfile#L4)
+[anagram_pairs_count (lang: Ruby, level: medium)](/anagram_pairs_count)
 
-All challenges are covered by tests. See `/tests`
+[bigger_is_greater (lang: Ruby, level: medium)](/bigger_is_greater)
 
-#### To run all tests
-`ruby tests/**/*.rb`
+[bowling (lang: Ruby, level: medium)-game](/bowling-game)
 
-####E.g.
+[custom_set (lang: Ruby, level: medium)](/custom_set)
 
-[English Numbers Kata](https://github.com/razorcd/code-challenges/blob/master/english_numbers_kata/english_numbers_kata.rb)
+[cut_the_tree (lang: Ruby, level: medium)](/cut_the_tree)
+
+[cutting_boards (lang: Ruby, level: hard)](/cutting_boards)
+
+[english_numbers_kata (lang: Ruby, level: medium)](/english_numbers_kata)
+
+[matrix (lang: Ruby, level: hard)](/matrix)
+
+[maximize_sum (lang: Ruby, level: medium)](/maximize_sum)
+
+[non_divisible_subset (lang: Java, level: medium)](/non_divisible_subset)
+
+[Red_Knights_Shortest_Path (lang: Java, level: medium)](/Red_Knights_Shortest_Path)
+
+[sherlock_and_the_valid_string (lang: Java, level: medium)](/sherlock_and_the_valid_string)
+
+[square_roots (lang: Javascript, Ruby, level: medium)](/square_roots)
+
+[theinquiringmanager (lang: Java, level: medium)](/theinquiringmanager)
+
+[time_conversion (lang: Java, level: easy)](/time_conversion)
+
+[travel_around_the_world (lang: Ruby, level: medium)](/travel_around_the_world)
+
+
