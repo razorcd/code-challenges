@@ -1,0 +1,11 @@
+
+Hsquid:S1481",Remove this unused "finshed" local variable.(áá’8ô¨¥ü¥,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(ğ±šº8ª®âü¥,
+csquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(…ö¹8ù¹¢ü¥,
+osquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(¸•ÀÆ8±ÛÊü¥,
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ğ–‰Íşÿÿÿÿ8‰‚±ü¥,
+bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ù¹¢ü¥,
+Wsquid:S1854";Remove this useless assignment to local variable "finshed".(áá’8ô¨¥ü¥,
+²%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(áÕ‚†ıÿÿÿÿ8¡öÕü¥,
+tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(Ğ–‰Íşÿÿÿÿ8±ÛÊü¥,

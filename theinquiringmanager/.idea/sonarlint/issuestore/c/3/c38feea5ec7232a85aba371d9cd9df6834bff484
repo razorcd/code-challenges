@@ -1,0 +1,18 @@
+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(â›ø8ôòµö¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ó¬ƒªüÿÿÿÿ8Íßù¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(„½’ùÿÿÿÿ8ôòµö¥,
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(â·˜ð8¿õÜù¥,
+^squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8Üÿõ¥,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(êøá8ôòµö¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ôòµö¥,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(›‹Ú8ôòµö¥,
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÁŒß»8±îýù¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ÿ®Œ±þÿÿÿÿ8ôòµö¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(±‹Ü¹øÿÿÿÿ8ôòµö¥,
+¬%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(º™Ú78šò—ü¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(øúüøÿÿÿÿ8ôòµö¥,
+Ssquid:S1135"2Complete the task associated to this TODO comment.(ÿÝöúÿÿÿÿ8÷Î‹õ¥,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Â¶ÊÀüÿÿÿÿ8šò—ü¥,
