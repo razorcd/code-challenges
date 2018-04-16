@@ -12,7 +12,11 @@
 
 [cutting_boards (lang: Ruby, level: hard)](/cutting_boards)
 
+[does_it_fit (lang: Java, level: medium)](/DoesItFit)
+
 [english_numbers_kata (lang: Ruby, level: medium)](/english_numbers_kata)
+
+[fibonacci (lang: Java, level: easy)](/fibonacci-java)
 
 [matrix (lang: Ruby, level: hard)](/matrix)
 
