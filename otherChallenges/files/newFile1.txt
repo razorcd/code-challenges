@@ -1,0 +1,2 @@
+Write byte by byte and 
+new line
