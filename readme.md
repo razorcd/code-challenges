@@ -18,6 +18,8 @@
 
 [fibonacci (lang: Java, level: easy)](/fibonacci-java)
 
+[hierarchical-parentheses (ang: Java, level: medium)](/hierarchical-parentheses)
+
 [matrix (lang: Ruby, level: hard)](/matrix)
 
 [maximize_sum (lang: Ruby, level: medium)](/maximize_sum)
@@ -37,3 +39,6 @@
 [travel_around_the_world (lang: Ruby, level: medium)](/travel_around_the_world)
 
 
+---
+
+[otherChallenges (lang: Java, level: various)](/otherChallenges)
