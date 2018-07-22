@@ -1,5 +1,11 @@
 package com.other.challenges;
 
+
+/**
+ * https://www.testdome.com/cert/7751842570574b9db69a0cc2bc5fc9d5
+ *
+ * Efficiently return number of elements that are smaller then an `input` in a sorted array.
+ */
 public class SortedSearch {
     public static int countNumbers(int[] sortedArray, int lessThan) {
 //        return (int) Arrays.stream(sortedArray).filter(v -> v < lessThan).count();  // => bad performance
@@ -8,7 +14,7 @@ public class SortedSearch {
         if (lessThan < sortedArray[0]) return 0;
         if (lessThan > sortedArray[sortedArray.length-1]) return sortedArray.length;
 
-        // recurcive by divide and conquer
+        // recursive by divide and conquer
         return searchArray(0, sortedArray.length-1, sortedArray, lessThan);
     }
 
